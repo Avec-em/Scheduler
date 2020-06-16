@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios'
 import "components/Application.scss";
-import DayList from 'components/dayList'
-import { getAppointmentsForDay, getInterview, getInterviewersForDay } from "helpers/selectors";
+
 
 export function useApplicationData() {
 
@@ -54,6 +53,7 @@ export function useApplicationData() {
       axios.get('http://localhost:8001/api/interviewers'),
     ])
     .then(([daysRes, appointmentRes, interviewersRes]) => {
+      console.log(interviewersRes.data)
       setState(prev => ({...prev, days: daysRes.data, appointments:appointmentRes.data, interviewers:interviewersRes.data}))
     })
 
