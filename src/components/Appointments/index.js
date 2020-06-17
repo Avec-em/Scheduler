@@ -7,6 +7,7 @@ import Status from "components/Appointments/status";
 import Confirm from "components/Appointments/confirm";
 import Error from "components/Appointments/error";
 import useVisualMode from "hooks/useVisualMode"
+import { useApplicationData } from "helpers/useApplicationData"
 
 const EMPTY = "EMPTY";
 const SHOW = "SHOW";
@@ -56,7 +57,9 @@ const Appointment = function(props) {
   }
 
   return (
-  <article className="appointment">
+  <article 
+  className="appointment"
+  data-testid="appointment">
     <header time={props.time}>{props.time}</header>
     {mode === EMPTY && <Empty onAdd={onAdd} />}
     {mode === SHOW && (

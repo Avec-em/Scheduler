@@ -2,7 +2,7 @@ import React from 'react'
 
 const Show = function(props) {
   const { onDelete } = props;
-  return (
+  return (  
     <main className="appointment__card appointment__card--show">
       <section className="appointment__card-left">
         <h2 className="text--regular">{props.student}</h2>

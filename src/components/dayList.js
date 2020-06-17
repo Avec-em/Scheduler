@@ -10,6 +10,7 @@ const DayList = (props) => {
     selected={day.name === props.day}
     setDay={props.setDay}
     key={index}
+    data-testid="day"
     />
     ))
   return (
