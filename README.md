@@ -1,5 +1,10 @@
 # Interview Scheduler
 
+## Screenshots
+![newly created appt ss](docs/Newly Created Appt.png)
+![cancelling appt ss](docs/Cancelling Appt.png)
+![day view ss](docs/Day View.png)
+
 ## Setup
 
 Install dependencies with `npm install`.
