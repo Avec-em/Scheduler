@@ -1,9 +1,9 @@
 # Interview Scheduler
 
 ## Screenshots
-!["newly created appt ss"](docs/Newly Created Appt.png)
-!["cancelling appt ss"](docs/Cancelling Appt.png)
-!["day view ss"](docs/Day View.png)
+!["newly created appt ss"](https://github.com/Avec-em/Scheduler/blob/master/docs/Newly%20Created%20Appt.png?raw=true)
+!["cancelling appt ss"](https://github.com/Avec-em/Scheduler/blob/master/docs/Cancelling%20Appt.png?raw=true)
+!["day view ss"](https://github.com/Avec-em/Scheduler/blob/master/docs/Day%20View.png?raw=true)
 
 ## Setup
 
