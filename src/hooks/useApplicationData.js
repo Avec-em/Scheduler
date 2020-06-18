@@ -26,6 +26,7 @@ const reducer = function(state, action) {
         ...state.appointments[action.id],
         interview: action.interview && {...action.interview}
       };
+      // return spots left if an interview is created or deleted
       const spotsLeft = state.days.map(day => {
         for (let appointmentId of day.appointments) {
           if (appointmentId === action.id) {

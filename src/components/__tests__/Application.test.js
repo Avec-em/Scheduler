@@ -104,19 +104,48 @@ describe('Application', () => {
       queryByText(day, 'Monday')
       )
       expect(getByText(day, '1 spot remaining')).toBeInTheDocument()
-      debug()
+      // debug()
       })
 
     /* test number five */
-    it("shows the save error when failing to save an appointment", async() => {
+    it('shows the save error when failing to save an appointment', async () => {
+      const { container, getByDisplayValue } = render(<Application />)
+      await waitForElement(() => getByText(container, 'Archie Cohen'))
+  
+      const appointment = getAllByTestId(container, 'appointment').find(
+        appointment => queryByText(appointment, 'Archie Cohen')
+      )
+      fireEvent.click(queryByAltText(appointment, 'Edit'))
+  
+      fireEvent.change(getByDisplayValue('Archie Cohen'), {
+        target: { value: 'Lydia Miller-Jones' }
+      })
 
-      axios.put.mockRejectedValueOnce();
+      axios.put.mockRejectedValueOnce()
+      fireEvent.click(getByText(appointment, 'Save'))
+      expect(getByText(appointment, 'Saving')).toBeInTheDocument()
+  
+      await waitForElement(() => queryByText(appointment, 'Error'))
+      fireEvent.click(queryByAltText(appointment, 'Close'))
+      expect(getByText(appointment, 'Lydia Miller-Jones')).toBeInTheDocument()
+    })
 
-    });
-    it('shows the delete error when faling to delete and existing appointment'), async() => {
+    it('shows the delete error when failing to delete an existing appointment', async () => {
+      const { container } = render(<Application />)
+      await waitForElement(() => getByText(container, 'Archie Cohen'))
 
-      axios.delete.mockRejectedValueOnce();
-
-    }
-
-  })  
+      const appointment = getAllByTestId(container, 'appointment').find(
+        appointment => queryByText(appointment, 'Archie Cohen')
+        )
+      fireEvent.click(queryByAltText(appointment, 'Delete'))
+      axios.delete.mockRejectedValueOnce()
+      
+      expect(getByText(appointment, 'Are you sure you want to cancel this appointment?')).toBeInTheDocument()
+      fireEvent.click(getByText(appointment, 'Confirm'))
+      
+      expect(getByText(appointment, 'Deleting...')).toBeInTheDocument()
+      await waitForElement(() => queryByText(appointment, 'Error'))
+      fireEvent.click(queryByAltText(appointment, 'Close'))
+      expect(getByText(appointment, 'Archie Cohen')).toBeInTheDocument()
+    })
+})
